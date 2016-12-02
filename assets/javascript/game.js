@@ -14,15 +14,15 @@ var LukeSkywalker = {
 }
 var ObiwanKenobi = {
 	hp: 120,
-	attackPower: 8
+	attackPower: 6
 }
 var DarthMaul = {
 	hp: 180,
-	attackPower: 10
+	attackPower: 6
 }
 var AnakinSkywalker = {
 	hp: 150,
-	attackPower: 12
+	attackPower: 6
 }
 
 //manages click events on Jedi
