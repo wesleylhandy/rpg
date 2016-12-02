@@ -78,7 +78,7 @@ function reset() {
 
 function checkForWin () {
 	if (deadJedi.length === 3) {
-		$("#alerts").append("YOU WIN!!!");
+		$("#alerts").append(" YOU WIN!!!");
 		$("#fight").fadeOut("fast");
 		$("#battle").fadeOut("fast");
 		$("#reset").fadeIn("slow");
