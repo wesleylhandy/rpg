@@ -41,7 +41,7 @@ h1, h3, button {
 }
 
 .thumbnail {
-	border: 0.2em solid green;
+	border: 0.2em solid #7D9403;
 }
 
 .thumbnail:hover {

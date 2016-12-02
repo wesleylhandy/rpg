@@ -28,7 +28,7 @@ var AnakinSkywalker = {
 $(".character").on("click", function() {
 	if (!(gameOn) && !(chooseDefender)) {
 		chooseDefender = true;
-		$(this).css("border-color", "#43197F");
+		$(this).css("border-color", "#320B68");
 		$("#choose").html("Enemy");
 		assailant = $(this).detach();
 		assailant.appendTo("#active");
@@ -78,7 +78,7 @@ function reset() {
 
 function checkForWin () {
 	if (deadJedi.length === 3) {
-		$("#alerts").html("YOU WIN!!!");
+		$("#alerts").append("YOU WIN!!!");
 		$("#fight").fadeOut("fast");
 		$("#battle").fadeOut("fast");
 		$("#reset").fadeIn("slow");
