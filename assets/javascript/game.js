@@ -1,3 +1,9 @@
+//set date
+let d = new Date();
+let year = d.getFullYear();
+
+$("#year").text(year);
+
 //initialize global variables
 var gameOn = false;
 var chooseDefender = false;
