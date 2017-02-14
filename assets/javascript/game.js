@@ -92,16 +92,20 @@ function reset() {
 	$("#available").fadeIn("slow");
 }
 
+var transition;
 function checkForWin () {
 	//see if all three jedi other than user have been killed (i.e. added to deadJedi array)
 	if (deadJedi.length === 3) {
-		$("#alerts").append(" YOU WIN!!!");
-		$("#fight").fadeOut("fast"); //hide fight button
-		$("#battle").fadeOut("fast"); //hide battle area
-		$("#reset").fadeIn("slow"); //show start over button
-		gameOn = false;
-		//get winner out of attack position to be reinserted into available on reset
-		winner = assailant.detach();
+		function youWin() {
+			$("#alerts").text(" YOU WIN!!!");
+			$("#fight").fadeOut("fast"); //hide fight button
+			$("#battle").fadeOut("fast"); //hide battle area
+			$("#reset").fadeIn("slow"); //show start over button
+			gameOn = false;
+			//get winner out of attack position to be reinserted into available on reset
+			winner = assailant.detach();
+		}
+		transition = setTimeout(youWin, 2000);
 	} else { 
 		$("#fight").fadeOut("slow"); // hide fight button
 		$("#available").fadeIn("slow"); //show remaining available Jedi
@@ -120,12 +124,15 @@ function battle() {
 	attack+=attack; //update attack-power
 	assailant.data("attack-power", attack); //change data on user attack power
 	//check to see if victim has been killed
-	if (vhp <= 0) { 
-		deadJedi.push(victim.detach());
-		console.log(deadJedi);
-		$("#alerts").append(" And you killed him!");
-		//checks to see if all jedi are dead
-		checkForWin();
+	if (vhp <= 0) {
+		function jediDied() {
+			deadJedi.push(victim.detach());
+			console.log(deadJedi);
+			$("#alerts").text(" And you killed him!");
+			//checks to see if all jedi are dead
+			checkForWin();
+		}
+		transition = setTimeout(jediDied, 2000);
 	} else {
 		//this only runs if victim still alive. This calculates counter-damage
 		var uhp = parseInt(assailant.data("hp")); // get user hit points
@@ -136,15 +143,18 @@ function battle() {
 		$("#alerts").append(victim.data("name") + " did " + counterAttack + " damage to you.");
 		//check to see if user has been killed
 		if (uhp <= 0) {
-			userDeath = true;
-			//store dead Jedi in an array
-			deadJedi.push(assailant.detach());
-			console.log(deadJedi);
-			//go to end-game screen
-			$("#alerts").append(" And he killed you!");
-			$("#fight").fadeOut("fast"); // hide fight button
-			$("#battle").fadeOut("fast"); //hide battle area
-			$("#reset").fadeIn("slow"); // show start over button
+			$("#alerts").text(" And he killed you!");
+			function youDied() {
+				userDeath = true;
+				//store dead Jedi in an array
+				deadJedi.push(assailant.detach());
+				console.log(deadJedi);
+				//go to end-game screen
+				$("#fight").fadeOut("fast"); // hide fight button
+				$("#battle").fadeOut("fast"); //hide battle area
+				$("#reset").fadeIn("slow"); // show start over button
+			}
+			transition = setTimeout(youDied, 2000);
 		}
 	}
 }
